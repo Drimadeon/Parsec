@@ -36,12 +36,12 @@ def move_and_draw_stars(screen):
     """ Move and draw the stars in the given screen """
     global stars
     for star in stars:
-        star[1] += star[2]
+        star[0] -= star[2]
         # If the star hit the bottom border then we reposition
         # it in the top of the screen with a random X coordinate.
-        if star[1] >= screen.get_height():
-            star[1] = 0
-            star[0] = randrange(0, 639)
+        if star[0] <= 0:
+            star[0] = screen.get_width()
+            star[1] = randrange(0, 479)
             star[2] = choice([1, 2, 3])
 
         # Adjust the star color according to the speed.
